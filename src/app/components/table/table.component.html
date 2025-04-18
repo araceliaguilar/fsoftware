@@ -1,0 +1,24 @@
+<h1>Lista de Datos</h1>
+
+<div *ngIf="errorMessage" style="color: red;">
+  {{ errorMessage }}
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let column of displayedColumns">{{ column.header }}</th>
+      <th *ngIf="shouldShowDetailButton()">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data" (click)="onRowClick(item)" style="cursor: pointer;">
+      <td *ngFor="let column of displayedColumns">{{ item[column.key] }}</td>
+      <td *ngIf="shouldShowDetailButton()">
+        <button (click)="verDetalle(item); $event.stopPropagation()">
+          Ver Detalle
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
