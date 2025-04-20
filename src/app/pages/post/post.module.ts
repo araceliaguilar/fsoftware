@@ -9,17 +9,13 @@ import { ViewpostComponent } from './components/viewpost/viewpost.component';
 
 @NgModule({
   declarations: [
-    // ListComponent, // ¡Descomenta y declara ListComponent!
-  
-    // ViewpostComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule, // Ahora SharedModule exporta TableComponent
-    PostRoutingModule,
-    TableComponent,
     ListComponent,
     ViewpostComponent
+   ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    PostRoutingModule,
   ]
 })
 export class PostModule { }

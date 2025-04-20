@@ -1,15 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { PostModel } from '../../model/post.model';
 
 @Component({
   selector: 'app-viewpost',
-  standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule],
+  standalone: false,
   templateUrl: './viewpost.component.html',
   styleUrl: './viewpost.component.css'
 })
@@ -20,17 +16,18 @@ export class ViewpostComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService
+    private postService: PostService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.postId = +params['id'];
-      this.getPostDetails();
+      this.cargarDetalles();
     });
   }
 
-  getPostDetails(): void {
+  cargarDetalles(): void {
     this.postService.getPostsDetalle(this.postId).subscribe(
       (post) => {
         this.post = post;
@@ -42,8 +39,8 @@ export class ViewpostComponent {
     );
   }
 
-  goBack(): void {
-    // Implementa la lógica para volver a la página anterior (ej., usando Router)
+  volver(): void {
+    this.router.navigate(['/paginas/posts']);
     console.log('Volver');
   }
 }
